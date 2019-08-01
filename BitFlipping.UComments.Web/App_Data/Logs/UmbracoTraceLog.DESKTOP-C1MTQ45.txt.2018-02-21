@@ -1,0 +1,64 @@
+﻿ 2018-02-21 21:06:29,731 [P19264/D2/T50] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username rasmuseeg@outlook.com from IP address ::1
+ 2018-02-21 21:06:29,732 [P19264/D2/T50] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: rasmuseeg@outlook.com logged in from IP address ::1
+ 2018-02-21 21:37:23,330 [P19264/D2/T111] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Sunde, nemme og hurtige grovboller' with Id '1092' has been published.
+ 2018-02-21 21:37:23,599 [P19264/D2/T111] INFO  Articulate.ArticulateRoutes - Mapping routes for 0 Articulate root nodes
+ 2018-02-21 21:37:27,578 [P19264/D2/T54] INFO  umbraco.content - Save Xml to file...
+ 2018-02-21 21:37:27,587 [P19264/D2/T54] INFO  umbraco.content - Saved Xml to file.
+ 2018-02-21 21:37:44,903 [P19264/D2/T111] INFO  Articulate.ArticulateRoutes - Mapping routes for 0 Articulate root nodes
+ 2018-02-21 21:42:03,535 [P19264/D2/T54] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Sunde, nemme og hurtige grovboller' with Id '1092' has been published.
+ 2018-02-21 21:42:03,948 [P19264/D2/T54] INFO  Articulate.ArticulateRoutes - Mapping routes for 0 Articulate root nodes
+ 2018-02-21 21:42:07,898 [P19264/D2/T106] INFO  umbraco.content - Save Xml to file...
+ 2018-02-21 21:42:07,909 [P19264/D2/T106] INFO  umbraco.content - Saved Xml to file.
+ 2018-02-21 21:42:47,903 [P19264/D2/T14] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Sunde, nemme og hurtige grovboller' with Id '1092' has been published.
+ 2018-02-21 21:42:48,171 [P19264/D2/T14] INFO  Articulate.ArticulateRoutes - Mapping routes for 0 Articulate root nodes
+ 2018-02-21 21:42:52,115 [P19264/D2/T96] INFO  umbraco.content - Save Xml to file...
+ 2018-02-21 21:42:52,163 [P19264/D2/T96] INFO  umbraco.content - Saved Xml to file.
+ 2018-02-21 22:00:02,236 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Terminating
+ 2018-02-21 22:00:02,237 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Waiting for tasks to complete
+ 2018-02-21 22:00:02,243 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Terminating
+ 2018-02-21 22:00:02,243 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Waiting for tasks to complete
+ 2018-02-21 22:00:02,249 [P19264/D2/T19] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Tasks completed, terminated
+ 2018-02-21 22:00:02,250 [P19264/D2/T30] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Tasks completed, terminated
+ 2018-02-21 22:00:02,277 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Terminating
+ 2018-02-21 22:00:02,279 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Waiting for tasks to complete
+ 2018-02-21 22:00:02,280 [P19264/D2/T106] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Tasks completed, terminated
+ 2018-02-21 22:00:02,282 [P19264/D2/T103] INFO  Umbraco.Core.MainDom - Stopping...
+ 2018-02-21 22:00:02,286 [P19264/D2/T103] INFO  Umbraco.Core.MainDom - Released MainDom.
+ 2018-02-21 22:00:02,298 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Terminating
+ 2018-02-21 22:00:02,299 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Waiting for tasks to complete
+ 2018-02-21 22:00:02,299 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Terminating
+ 2018-02-21 22:00:02,299 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Waiting for tasks to complete
+ 2018-02-21 22:00:02,300 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [HealthCheckNotifier] Terminating
+ 2018-02-21 22:00:02,300 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [HealthCheckNotifier] Waiting for tasks to complete
+ 2018-02-21 22:00:02,300 [P19264/D2/T103] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [HealthCheckNotifier] Tasks completed, terminated
+ 2018-02-21 22:00:02,304 [P19264/D2/T101] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Tasks completed, terminated
+ 2018-02-21 22:00:02,305 [P19264/D2/T101] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Tasks completed, terminated
+ 2018-02-21 22:00:32,382 [P19264/D2/T103] INFO  Umbraco.Core.UmbracoApplicationBase - Application shutdown. Details: BinDirChangeOrDirectoryRename
+
+_shutDownMessage=Change Notification for critical directories.
+bin dir change or directory rename
+HostingEnvironment initiated shutdown
+Change Notification for critical directories.
+bin dir change or directory rename
+Change Notification for critical directories.
+bin dir change or directory rename
+Change Notification for critical directories.
+bin dir change or directory rename
+HostingEnvironment caused shutdown
+
+_shutDownStack=   at System.Environment.GetStackTrace(Exception e, Boolean needFileInfo)
+   at System.Environment.get_StackTrace()
+   at System.Web.Hosting.HostingEnvironment.InitiateShutdownInternal()
+   at System.Web.Hosting.HostingEnvironment.InitiateShutdownWithoutDemand()
+   at System.Web.HttpRuntime.ShutdownAppDomain(String stackTrace)
+   at System.Web.HttpRuntime.OnCriticalDirectoryChange(Object sender, FileChangeEvent e)
+   at System.Web.FileChangesMonitor.OnCriticaldirChange(Object sender, FileChangeEvent e)
+   at System.Web.DirectoryMonitor.FireNotifications()
+   at System.Web.Util.WorkItem.CallCallbackWithAssert(WorkItemCallback callback)
+   at System.Web.Util.WorkItem.OnQueueUserWorkItemCompletion(Object state)
+   at System.Threading.QueueUserWorkItemCallback.WaitCallback_Context(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.QueueUserWorkItemCallback.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading._ThreadPoolWaitCallback.PerformWaitCallback()

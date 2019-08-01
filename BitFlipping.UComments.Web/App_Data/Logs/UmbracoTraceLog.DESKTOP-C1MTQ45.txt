@@ -1,0 +1,2 @@
+﻿ 2018-02-27 15:43:52,750 [P19264/D4/T41] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2018-02-26 15:43:52
+ 2018-02-27 19:43:49,664 [P19264/D4/T83] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2018-02-26 19:43:49

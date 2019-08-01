@@ -1,0 +1,133 @@
+@inherits UmbracoViewPage<SoMeShareViewModel>
+@using System.Collections.Specialized
+@using Umbraco.Web.Mvc
+
+@{
+    Html.RequiresJs("~/content/components/clipboard/dist/clipboard.js", 1, 2, new { @defer = "" })
+        .RequiresJs("~/scripts/build/clipboard.js", 1, 2, new { @defer = "" })
+        .RequiresJs("~/scripts/build/sticky.js", 1, 2, new { @defer = "" });
+
+}
+
+<ul class="so-me-share">
+    @if (Model.EnableFacebook)
+    {
+        var encodedUrl = HttpUtility.UrlEncode(Model.CurrentPage.UrlAbsolute());
+        <li class="so-me-share__item so-me-share__item--facebook">
+            <a class="so-me-share__link"
+               href="https://www.facebook.com/sharer/sharer.php?u=@encodedUrl"
+               title="@Umbraco.GetDictionaryValue("Share on Facebook", "Del på Facebook")"
+               onclick="PopupCenter(this.href, this.title, 400, 300)">
+                <div class="fa fa-facebook fa--border-circle"></div>
+            </a>
+        </li>
+    }
+    @if (Model.EnableTwitter)
+    {
+        var encodedUrl = HttpUtility.UrlEncode(Model.CurrentPage.UrlAbsolute());
+        <li class="so-me-share__item so-me-share__item--twitter">
+            <a class="so-me-share__link"
+               href="https://twitter.com/home?status=@encodedUrl"
+               title="@Umbraco.GetDictionaryValue("Share on Twitter", "Del på Twitter")"
+               onclick="PopupCenter(this.href, this.title, 400, 300)">
+                <svg width="100%" height="100%" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect id="Moodbord" x="-192" y="-1457" width="1440" height="3797" style="fill:none;" /><g id="twitter-svg-ikon"><path id="kant" d="M30,22l-8,8l-22,0l0,-30l30,0l0,22Zm-29,-21l0,28l20.586,0l7.414,-7.414l0,-20.586l-28,0Z" style="fill:#9b9c83;" /><g id="text" transform="matrix(0.41743,0,0,0.41743,-1590.95,-2062.64)"><text x="3826.42px" y="5010.74px" style="font-family:'CeraStencilPRO-Black', 'Cera Stencil PRO';font-weight:900;font-size:82px;fill:none;">t</text><text x="3826.42px" y="5010.74px" style="font-family:'CeraStencilPRO-Black', 'Cera Stencil PRO';font-weight:900;font-size:82px;fill:#9b9c83;">t</text></g></g></svg>
+            </a>
+        </li>
+    }
+    @if (Model.EnableGooglePlus)
+    {
+        var encodedUrl = HttpUtility.UrlEncode(Model.CurrentPage.UrlAbsolute());
+        <li class="so-me-share__item so-me-share__item--google-plus">
+            <a class="so-me-share__link"
+               href="https://plus.google.com/share?url=@encodedUrl"
+               title="@Umbraco.GetDictionaryValue("Share on Google+", "Share on Google+")"
+               onclick="PopupCenter(this.href, this.title, 400, 300)">
+                <span class="fa fa-google-plus"></span>
+                <span class="sr-only">@Umbraco.GetDictionaryValue("Share on Google+", "Share on Google+")</span>
+            </a>
+        </li>
+    }
+    @if (Model.EnableLinkedIn)
+    {
+        //https://www.linkedin.com/shareArticle?mini=true&url=http%3A//www.sharelinkgenerator.com/&title=%7Btitle%7D&summary=%7Bsummary%7D&source=
+        NameValueCollection nvc = HttpUtility.ParseQueryString("");
+        nvc.Add("url", Model.CurrentPage.UrlAbsolute());
+        //nvc.Add("title", Model.CurrentPage.GetPropertyValue<string>("ogTitle", Model.CurrentPage.Name));
+        // Optionals
+        //nvc.Add("summary", Model.CurrentPage.GetPropertyValue<string>("ogDescription", false, ""));
+        nvc.Add("source", Model.CurrentPage.UrlAbsolute());
+        var encodedUrl = HttpUtility.UrlEncode(nvc.ToString());
+        <li class="so-me-share__item so-me-share__item--linkedin">
+            <a class="so-me-share__link"
+               href="https://www.linkedin.com/shareArticle?@nvc.ToString()"
+               title="@Umbraco.GetDictionaryValue("Share on LinkedIn", "Share on LinkedIn")"
+               onclick="PopupCenter(this.href, this.title, 400, 300)">
+                <svg width="100%" height="100%" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect id="Moodbord" x="-263" y="-1390" width="1200" height="2706" style="fill:#fff;"/><g id="LinkedIn"><path d="M15,30c-10.581,0 -14.672,-4.036 -15,-15c0.328,-10.964 4.419,-15 15,-15c10.582,0 14.673,4.036 15,15c-0.381,10.964 -4.418,15 -15,15Z" style="fill:#202d35;"/><path id="fa.-linkedin" d="M11.684,11.54l0,9.143l-3.045,0l0,-9.143l3.045,0Zm0.193,-2.823c0.006,0.449 -0.149,0.824 -0.466,1.125c-0.316,0.302 -0.733,0.453 -1.25,0.453l-0.018,0c-0.505,0 -0.91,-0.151 -1.218,-0.453c-0.308,-0.301 -0.461,-0.676 -0.461,-1.125c0,-0.455 0.158,-0.832 0.475,-1.13c0.317,-0.299 0.73,-0.448 1.241,-0.448c0.51,0 0.919,0.149 1.227,0.448c0.307,0.298 0.464,0.675 0.47,1.13Zm10.758,6.726l0,5.24l-3.036,0l0,-4.89c0,-0.646 -0.124,-1.151 -0.373,-1.517c-0.249,-0.366 -0.638,-0.549 -1.167,-0.549c-0.388,0 -0.712,0.106 -0.974,0.318c-0.261,0.212 -0.456,0.475 -0.586,0.789c-0.067,0.184 -0.101,0.433 -0.101,0.747l0,5.102l-3.035,0c0.012,-2.454 0.018,-4.444 0.018,-5.969c0,-1.526 -0.003,-2.436 -0.009,-2.731l-0.009,-0.443l3.035,0l0,1.329l-0.018,0c0.123,-0.197 0.249,-0.369 0.378,-0.517c0.129,-0.148 0.303,-0.308 0.521,-0.48c0.218,-0.172 0.486,-0.306 0.803,-0.401c0.317,-0.095 0.669,-0.143 1.056,-0.143c1.052,0 1.898,0.349 2.537,1.047c0.64,0.698 0.96,1.721 0.96,3.068Z" style="fill:#fff;"/></g></svg>
+            </a>
+        </li>
+    }
+    @if (Model.EnableEmail)
+    {
+        // mailto:1?&cc=3&bcc=4&subject=2&body=5
+        NameValueCollection nvc = HttpUtility.ParseQueryString("");
+        //nvc.Add("cc", Model.Content.UrlAbsolute());
+        //nvc.Add("bcc", Model.Content.UrlAbsolute());
+        nvc.Add("subject", Model.CurrentPage.GetPropertyValue<string>("headline", Model.CurrentPage.Name));
+        nvc.Add("body", Model.CurrentPage.UrlAbsolute().ToString());
+        <li class="so-me-share__item so-me-share__item--email">
+            <a class="so-me-share__link"
+               href="mailto:?@nvc.ToString()"
+               title="@Umbraco.GetDictionaryValue("Share by Email", "Del via Email")">
+                <div class="fa fa-envelope-o fa--border-circle"></div>
+            </a>
+        </li>
+    }
+    @if (Model.EnablePrint)
+    {
+        <li class="so-me-share__item so-me-share__item--print">
+            <a class="so-me-share__link"
+               href="#!"
+               onclick="print()"
+               title="@Umbraco.GetDictionaryValue("Share by Print", "Print and share")">
+                <span class="fa fa-print"></span>
+                <span class="sr-only">@Umbraco.GetDictionaryValue("Share by Print", "Print and share")</span>
+            </a>
+        </li>
+    }
+
+    @if (Model.EnableCopyUrl)
+    {
+        <li class="so-me-share__item so-me-share__item--clipboard clipboard">
+            <a class="so-me-share__link"
+               data-clipboard-text="@Model.CurrentPage.UrlAbsolute()"
+               onclick="alert('Du har nu kopieret linket: ' + window.location.href)"
+               title="@Umbraco.GetDictionaryValue("Copy url", "Kopier url")">
+                <div class="fa fa-link fa--border-circle"></div>
+            </a>
+        </li>
+    }
+</ul>
+<script>
+    function PopupCenter(url, title, w, h) {
+        if (event.preventDefault)
+            event.preventDefault();
+        else
+            event.returnValue = false;
+
+        // Fixes dual-screen position                         Most browsers      Firefox
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+        // Puts focus on the newWindow
+        if (window.focus) {
+            newWindow.focus();
+        }
+    }
+</script>

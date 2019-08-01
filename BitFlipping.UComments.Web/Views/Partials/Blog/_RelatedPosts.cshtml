@@ -1,0 +1,9 @@
+﻿@inherits UmbracoViewPage<ContentModels.BlogPost>
+@using ContentModels = UmbracoBlog.Web.PublishedContentModels;
+@{ 
+    var intArrTags = Model.PostTags.Select(x => x.Id).ToArray();
+    var intArrCatategories = Model.PostCategories.Select(x => x.Id).ToArray();
+
+    var searcher = ExamineManager.Instance.SearchProviderCollection["ExternalSearcher"];
+    var criteria = searcher.CreateSearchCriteria();
+}

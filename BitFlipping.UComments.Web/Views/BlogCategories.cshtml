@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = UmbracoBlog.Web.PublishedContentModels;
+@{
+    Layout = "_BlogLayout.cshtml";
+
+    var searcher = ExamineManager.Instance.SearchProviderCollection["ExternalSearcher"];
+    var criteria = searcher.CreateSearchCriteria();
+    var searchTerms = criteria.NodeTypeAlias(ContentModels.BlogPost.ModelTypeAlias);
+    var results = searcher.Search(searchTerms.Compile())
+        .GroupBy(x=> x.Fields["blogCategories"]);
+}
+
+<div class="container-fluid">
+    <div class="row">
+    </div>
+</div>
+
+

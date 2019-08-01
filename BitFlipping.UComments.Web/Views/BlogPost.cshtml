@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.BlogPost>
+@using ContentModels = UmbracoBlog.Web.PublishedContentModels;
+@{
+    Layout = "Shared/_BlogLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-10 col-lg-8">
+            @Html.GetGridHtml(Model.Content, "layout", "bootstrap4")
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            @*@Html.RenderPartial("Shared/Blog/_RelatedPosts")*@
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            @*@Html.RenderPartial("Shared/Blog/_RelatedPosts")*@
+        </div>
+    </div>
+</div>

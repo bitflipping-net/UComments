@@ -1,0 +1,26 @@
+﻿<div>
+    <umb-control-group label="@comments_author" description="@comments_authorDescription">
+        <input type="text" ng-if="model.comment." ng-model="model.comment.author" />
+        ..or..
+        <a href ng-click="selectMember(model.comment, $event)">
+            <localize key=""></localize>
+        </a>
+    </umb-control-group>
+
+    <umb-control-group label="@comments_bodyText" description="@comments_bodyTextDescription">
+        <textarea class="umb-editor umb-textarea textstring"
+                  ng-model="model.comment.bodyText"></textarea>
+    </umb-control-group>
+
+    <umb-control-group label="@comments_submitted" description="@comments_submittedDescription">
+        {{model.comment.createDate | date:'short'}}
+    </umb-control-group>
+
+    <umb-control-group label="@comments_responseTo" description="@comments_responseToDescription" ng-if="model.comment.parentId">
+        {{model.comment.parent}}
+    </umb-control-group>
+
+    <umb-control-group label="@comments_responseTo" description="@comments_responseToDescription" ng-if="model.comment.parentId">
+        {{model.comment.parent}}
+    </umb-control-group>
+</div>

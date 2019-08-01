@@ -1,0 +1,108 @@
+﻿@inherits UmbracoViewPage<Articulate.Models.PostModel>
+@using UmbracoComments.Core.Services;
+@using UmbracoComments.Core.Models;
+@using UmbracoComments.Web.Controllers;
+@{
+    var commentService = new CommentService(ApplicationContext.Current, UmbracoContext);
+    var comments = commentService.GetComments(Model.Id);
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+}
+<h3>Kommentarer</h3>
+<div class="comment-list">
+    @foreach (var comment in comments)
+    {
+        string classNames = "";
+        classNames += Umbraco.If(comment.IsSpam, " -spam");
+        classNames += Umbraco.If(comment.Deleted, " -trash");
+
+        <div class="comment @classNames" id="comment-@comment.Key">
+            @*<div class="comment__avatar" >
+                    <img src="https://www.gravatar.com/avatar/@comment.EmailHash?s=40" title="@comment.Author" />
+                </div>*@
+            <div class="comment__body">
+                <div class="comment__author">
+                    <strong>@comment.Author</strong> <time class="comment__timestamp" datetime="@comment.CreateDate.ToIsoString()">@comment.CreateDate.FromNow()</time>
+                    <a class="comment__anchor" href="#comment-@comment.Key" title="Direct link to this comment">#</a> <br />
+                </div>
+
+                <div class="comment__text">
+                    @comment.BodyText
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<h3>Skriv en kommentar</h3>
+@if (TempData["CommentSuccess"] != null)
+{
+    <div id="comment-created" class="alert alert-success">
+        <strong>Tak din kommentar</strong>
+        <p class="mb-0">Du vil modtage en mail når din kommentar er blevet godkendt.</p>
+    </div>
+}
+@if (Members.IsLoggedIn())
+{
+    var commentModel = new MemberCommentModel()
+    {
+        ContentId = Model.Id,
+        MemberId = Members.GetCurrentMemberId()
+    };
+
+    using (Html.BeginUmbracoForm<CommentsController>("HandleAuthenticatedComment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => commentModel.ContentId)
+        @Html.HiddenFor(m => commentModel.MemberId)
+
+        <div>
+            @Html.LabelFor(m => commentModel.BodyText, new { @class = "control-label" })
+            @Html.TextAreaFor(m => commentModel.BodyText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => commentModel.BodyText)
+        </div>
+
+        <button class="btn btn-default" type="submit">Send</button>
+    }
+}
+else
+{
+    var commentModel = new CommentModel()
+    {
+        ContentId = Model.Id
+    };
+
+    using (Html.BeginUmbracoForm<CommentsController>("HandleComment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => commentModel.ContentId)
+
+        <div class="form-group">
+            @Html.LabelFor(m => commentModel.Name, "Navn", new { @class = "control-label", placeholder = "" })
+            @Html.TextBoxFor(m => commentModel.Name, new { @class = "form-control", placeholder = "" })
+            @Html.ValidationMessageFor(m => commentModel.Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => commentModel.Email, "E-mail", new { @class = "control-label", placeholder = "" })
+            @Html.TextBoxFor(m => commentModel.Email, new { @class = "form-control", placeholder = "" })
+            @Html.ValidationMessageFor(m => commentModel.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => commentModel.WebsiteUrl, "Hjemmeside", new { @class = "control-label", placeholder = "" })
+            @Html.TextBoxFor(m => commentModel.WebsiteUrl, new { @class = "form-control", placeholder = "" })
+            @Html.ValidationMessageFor(m => commentModel.WebsiteUrl)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => commentModel.BodyText, "Besked", new { @class = "control-label" })
+            @Html.TextAreaFor(m => commentModel.BodyText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => commentModel.BodyText)
+        </div>
+
+        <button class="btn btn-default" type="submit">Send</button>
+    }
+}
+@*<script src="~/App_Plugins/uComments/js/mustache.js"></script>*@
+@*<script src="~/App_Plugins/ucomments/js/embed.js"></script>*@

@@ -1,0 +1,24 @@
+﻿@using Lecoati.LeBlender.Extension.Models
+@inherits UmbracoViewPage<LeBlenderModel>
+    @{ 
+        int number = 0;
+    }
+
+<div class="card-columns cards-afilliates">
+    @foreach (var item in Model.Items)
+    {
+        var udi = item.GetValue<Udi[]>("image").FirstOrDefault();
+        var media = Umbraco.TypedMedia(udi);
+        number+= 1;
+        
+        <a class="card" href="@item.GetValue("link")">
+            @if(media != null)
+            {
+                <img class="card-img" src="@media.Url?width=300" alt="@item.GetValue("name")">
+            }
+            <div class="card-body">
+                <h5 class="card-title">@number @(item.GetValue<string>("name"))</h5>
+            </div>
+        </a>
+    }
+</div>

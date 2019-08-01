@@ -1,0 +1,11 @@
+.vs
+*.suo
+obj/
+**/node_modules/
+[Bb]in/
+packages**/
+
+# Umbraco
+CampbellsBlog.Web/App_Data
+CampbellsBlog.Web/Media
+

@@ -1,0 +1,6 @@
+﻿@model UmbracoComments.Web.Models.CommentApprovedMailModel
+@using UmbracoComments.Web.Helpers;
+
+<p>Hej @Model.Author,</p>
+<p>Tak for din kommentar! Den er blevet godkendt. For at se siden, klik linket herunder:</p>
+<a href="@Model.PermaLink">@Model.PermaLink</a>

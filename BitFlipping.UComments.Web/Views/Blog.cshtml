@@ -1,0 +1,52 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Blog>
+@using ContentModels = UmbracoBlog.Web.PublishedContentModels;
+@using Our.Umbraco.Picture;
+@{
+    Layout = "Shared/_BlogLayout.cshtml";
+
+    var latestPosts = Model.Content.FirstChild<ContentModels.BlogArchive>()
+        .Children<ContentModels.BlogPost>()
+        .OrderByDescending(x => x.PostDate)
+        .ThenByDescending(x => x.CreateDate);
+
+    var posts = new List<IPublishedContent>();
+    posts.AddRange(Model.Content.FeaturedPost);
+    posts.AddRange(Model.Content.FeaturesPosts);
+    posts.AddRange(latestPosts.Where(x => !latestPosts.Any(p => p.Id == x.Id)));
+
+    var featuredPost = latestPosts.FirstOrDefault();
+    var featuredPosts = latestPosts.Skip(1).Take(4);
+}
+<a href="@featuredPost.Url" class="jumbotron jumbotron-fluid p-3 p-md-5 text-dark bg-dark">
+
+    @{
+        var picture = Umbraco.Picture()
+            .Source("(min-width:1110px)", featuredPost.GetCropUrl(propertyAlias: "postImage", width: 1110, height: 355))
+            .Source("(min-width:1110px)", featuredPost.GetCropUrl(propertyAlias: "postImage", width: 1110, height: 355))
+            .Alt("Cat becomes tiger")
+            .Attr("class", "jumbotron-cover");
+
+        @Html.RenderPicture(picture);
+    }
+
+    <div class="container">
+        <div class="col-md-6 px-0 text-white">
+            <h1 class="display-4 d-inline-block">@featuredPost.Name</h1>
+            <p class="lead my-3">@featuredPost.PostExcerpt</p>
+        </div>
+    </div>
+
+</a>
+
+
+<div class="container">
+
+    <div class="row mb-2">
+        @foreach (var post in featuredPosts)
+        {
+            <div class="col-md-4 col-lg-4">
+                @Html.Partial("Cards/_BlogPost", post)
+            </div>
+        }
+    </div>
+</div>

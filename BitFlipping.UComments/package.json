@@ -1,0 +1,16 @@
+{
+  "name": "umbraco-comments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jquery": "^3.2.17",
+    "@types/umbraco": "^7.2.33"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

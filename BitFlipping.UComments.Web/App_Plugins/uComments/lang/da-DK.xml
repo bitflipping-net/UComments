@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="da" intName="Danish" localName="dansk" lcid="6" culture="da-DK">
+  <creator>
+    <name>The Umbraco community</name>
+    <link>http://our.umbraco.org</link>
+  </creator>
+  <area alias="comments">
+    <key alias="fullName">Fulde navn</key>
+    <key alias="message">Besked</key>
+    <key alias="noComments"></key>
+    <key alias="noCommentsDescription"></key>
+  </area>
+</language>

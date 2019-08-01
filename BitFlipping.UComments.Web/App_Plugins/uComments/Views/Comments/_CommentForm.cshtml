@@ -1,0 +1,36 @@
+﻿@using UmbracoComments.Core.Models;
+@using UmbracoComments.Web.Controllers;
+@inherits UmbracoViewPage<CommentModel>
+@{
+    using (Html.BeginUmbracoForm<CommentsController>("HandleComment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ContentId)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Navn", new { @class = "control-label", placeholder = "" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, "E-mail", new { @class = "control-label", placeholder = "" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.WebsiteUrl, "Hjemmeside", new { @class = "control-label", placeholder = "" })
+            @Html.TextBoxFor(m => m.WebsiteUrl, new { @class = "form-control", placeholder = "" })
+            @Html.ValidationMessageFor(m => m.WebsiteUrl)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.BodyText, "Besked", new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.BodyText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BodyText)
+        </div>
+
+        <button class="btn btn-default" type="submit">Send</button>
+    }
+}

@@ -1,0 +1,19 @@
+﻿@inherits UmbracoViewPage<ContentModels.BlogPost>
+@using ContentModels = UmbracoBlog.Web.PublishedContentModels;
+
+<a href="@Model.Url" class="inherit card box-shadow">
+    @if (Model.PostImage != null)
+    {
+        <img class="card-img-top flex-auto d-none d-md-block" src="@Model.GetCropUrl(propertyAlias: "postImage", width: 538, height: 480)" />
+    }
+
+    <div class="card-body d-flex flex-column align-items-start">
+        @if (Model.PostCategories.Any())
+        {
+            <strong class="d-inline-block mb-2 text-primary">@Model.PostCategories.FirstOrDefault().Name</strong>
+        }
+        <h3 class="mb-0">@Model.Name</h3>
+        <div class="mb-1 text-muted">@Model.CreateDate.ToString("MMM dd")</div>
+        <p class="card-text mb-auto">@Model.PostExcerpt</p>
+    </div>
+</a>

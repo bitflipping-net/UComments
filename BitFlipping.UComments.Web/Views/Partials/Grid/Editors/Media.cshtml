@@ -1,0 +1,40 @@
+﻿@inherits UmbracoViewPage<dynamic>
+@using Umbraco.Web.Templates;
+@using Our.Umbraco.Picture;
+@{ 
+    IPublishedContent image = Umbraco.TypedMedia(Model.value.id.ToString());
+
+    var picture = Umbraco.Picture(image)
+        .Source("(min-width: 1110px)", 1110)
+        .Source("(min-width: 991px)", 991)
+        .Source("(min-width: 767px)", 767)
+        .Source("(min-width: 0px", 575);
+    picture.Alt = image.GetPropertyValue<string>("alt", null);
+
+    <figure>
+        @Html.RenderPicture(picture)
+        <figcaption>@image.GetPropertyValue("caption")</figcaption>
+    </figure>
+}
+
+@*@if (Model.value != null)
+{
+    <pre>@Model.Model.value.udi</pre>
+    var url = Model.value.image;
+    if(Model.editor.config != null && Model.editor.config.size != null){
+        url += "?width=" + Model.editor.config.size.width;
+        url += "&height=" + Model.editor.config.size.height;
+
+        if(Model.value.focalPoint != null){
+            url += "&center=" + Model.value.focalPoint.top +"," + Model.value.focalPoint.left;
+            url += "&mode=crop";
+        }
+    }
+    
+    <img src="@url" alt="@Model.value.caption">
+    
+    if (Model.value.caption != null)
+    {
+        <p class="caption">@Model.value.caption</p>
+    }
+}*@

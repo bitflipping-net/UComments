@@ -1,0 +1,34 @@
+﻿.comment {
+    background: none;
+    border-top: 1px solid #ecf0f1;
+    margin-top: 1em;
+    padding-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    font-family: "Merriweather", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Nimbus L", sans-serif;
+}
+
+    .comment .comment__avatar {
+        border-radius: 50%;
+        margin-right: 1em;
+    }
+
+    .comment .comment__author {
+        font-size: .9em;
+    }
+
+    .comment .comment__timestamp {
+    }
+
+        .comment .comment__timestamp:before {
+            content: "\2022";
+            padding-right: .2em;
+        }
+
+    .comment .comment__anchor {
+        float: right;
+    }
+
+.comment-form {
+
+}

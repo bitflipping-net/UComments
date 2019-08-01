@@ -1,0 +1,20 @@
+﻿@using UmbracoComments.Core.Services;
+@using UmbracoComments.Core.Models;
+@using UmbracoComments.Web.Controllers;
+@inherits UmbracoViewPage<MemberCommentModel>
+@{
+    using (Html.BeginUmbracoForm<CommentsController>("HandleMemberComment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ContentId)
+        @Html.HiddenFor(m => m.MemberId)
+
+        <div>
+            @Html.LabelFor(m => m.BodyText, new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.BodyText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BodyText)
+        </div>
+
+        <button class="btn btn-default" type="submit">Send</button>
+    }
+}

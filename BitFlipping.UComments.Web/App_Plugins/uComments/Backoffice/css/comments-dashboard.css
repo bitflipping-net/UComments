@@ -1,0 +1,77 @@
+﻿.commentdashboard .umb-table-body__icon,
+.commentdashboard .umb-table-body__icon[class*=" icon-"],
+.commentdashboard .umb-table-body__icon[class^=icon-] {
+    color: inherit;
+}
+
+.commentdashboard .umb-table-cell{
+    flex-flow: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.commentdashboard .umb-table-cell > * {
+    white-space: normal;
+}
+
+.commentdashboard .umb-table-cell .umb-table__name {
+    flex: 1 1 1%;
+    max-width: none;
+}
+
+.commentdashboard .comment__email ,
+.commentdashboard .comment__ipaddress {
+    color: #817f85;
+    white-space: nowrap;
+}
+
+.commentdashboard .comment-cell__comment{
+    flex: 1 1 25%;
+}
+
+.commentdashboard .-unapproved {
+    color: #000;
+}
+
+    .commentdashboard .-unapproved .umb-table__name > * {
+        color: #04BF67;
+    }
+
+/*.commentdashboard .-approved {
+}*/
+
+    .commentdashboard .-approved .umb-table__name > * {
+        opacity: 1;
+    }
+
+.commentdashboard .-spam {
+    color: #817f85;
+}
+
+    .commentdashboard .-spam .umb-table__name > * {
+        font-weight: normal;
+        opacity: .4;
+    }
+
+
+.commentdashboard .-trashed,
+.commentdashboard .-trashed.-spam {
+    color: #817f85;
+    text-decoration: line-through;
+}
+
+    .commentdashboard .-trashed .umb-table__name > * {
+        color: #817f85;
+        font-weight: normal;
+        opacity: .4;
+    }
+
+
+.commentdashboard .-selected .umb-table-body__icon {
+    color: #000 !important;
+}
+
+/*.commentdashboard .umb-table-cell.umb-table__name .umb-table-body__link {
+}
+.commentdashboard .umb-table-cell.umb-table__name .umb-table-body__email {
+
+}*/

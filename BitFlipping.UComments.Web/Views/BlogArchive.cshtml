@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.BlogArchive>
+@using ContentModels = UmbracoBlog.Web.PublishedContentModels;
+@{
+    Layout = "Shared/_BlogLayout.cshtml";
+
+    var latestPosts = Model.Content
+        .Children<ContentModels.BlogPost>()
+        .OrderByDescending(x => x.PostDate)
+        .ThenByDescending(x => x.CreateDate);
+}
+
+<div class="container">
+
+    <div class="row mb-2">
+        @foreach (var post in latestPosts)
+        {
+            <div class="col-md-4 col-lg-4">
+                @Html.Partial("Cards/_BlogPost", post)
+            </div>
+        }
+    </div>
+</div>
+

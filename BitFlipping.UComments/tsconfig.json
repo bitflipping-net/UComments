@@ -1,0 +1,14 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "module": "none",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "removeComments": false
+  },
+  "exclude": [
+    "obj"
+  ]
+}

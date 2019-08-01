@@ -1,0 +1,173 @@
+﻿<div class="commentdashboard" ng-controller="CommentDashboardController as vm">
+    <umb-load-indicator ng-if="vm.dashboard.loading"></umb-load-indicator>
+
+    <umb-editor-sub-header>
+        <umb-editor-sub-header-content-left>
+            <umb-editor-sub-header-section ng-if="vm.isAnythingSelected()">
+                <umb-button action="vm.clearSelection()"
+                            type="button"
+                            button-style="default"
+                            state="vm.buttonState"
+                            shortcut="ctrl+d"
+                            label-key="buttons_clearSelection"
+                            disabled="vm.buttonState === 'busy'">
+                </umb-button>
+            </umb-editor-sub-header-section>
+
+            <umb-editor-sub-header-section ng-if="vm.isAnythingSelected()">
+                <strong ng-show="!actionInProgress" class="ng-scope ng-binding">
+                    {{vm.getSelected().length}} <localize key="general_of" class="ng-isolate-scope ng-scope">of</localize>
+                    {{vm.comments.length}} <localize key="general_selected" class="ng-isolate-scope ng-scope">selected</localize>
+                </strong>
+            </umb-editor-sub-header-section>
+        </umb-editor-sub-header-content-left>
+
+
+        <umb-editor-sub-header-content-right>
+
+            <umb-editor-sub-header-section ng-if="vm.isAnythingSelected()">
+                <umb-button action="vm.approveSelected()"
+                            type="button"
+                            button-style="link"
+                            state="vm.buttonState"
+                            shortcut="ctrl+enter"
+                            icon="icon-check"
+                            label-key="comments_approve"
+                            disabled="vm.buttonState === 'busy'">
+                </umb-button>
+
+                <umb-button action="vm.markSpamSelected()"
+                            type="button"
+                            button-style="link"
+                            state="vm.buttonState"
+                            shortcut="ctrl+backspace"
+                            label-key="comments_markAsSpam"
+                            icon="icon-block"
+                            disabled="vm.buttonState === 'busy'">
+                </umb-button>
+
+                <umb-button action="vm.trashSelected()"
+                            type="button"
+                            button-style="link"
+                            state="vm.buttonState"
+                            shortcut="ctrl+del"
+                            icon="icon-trash"
+                            label-key="comments_moveToTrash"
+                            disabled="vm.buttonState === 'busy'">
+                </umb-button>
+            </umb-editor-sub-header-section>
+
+            <umb-editor-sub-header-section ng-if="!vm.isAnythingSelected()">
+
+                <!--<form class="form-search -no-margin-bottom pull-right" novalidate>
+                    <div class="inner-addon left-addon">
+                        <i class="icon icon-search"></i>
+                        <input class="form-control search-input"
+                               type="text"
+                               localize="placeholder"
+                               placeholder="@general_typeToSearch"
+                               ng-model="vm.dashboard.searchTerm"
+                               ng-change="vm.filter()"
+                               prevent-enter-submit
+                               no-dirty-check>
+                    </div>
+                </form>-->
+
+                <select ng-model="vm.dashboard.status" ng-change="vm.filter()">
+                    <option value="0" localize="label" label="@comments_any"></option>
+                    <option value="1" localize="label" label="@comments_pending"></option>
+                    <option value="2" localize="label" label="@comments_approved"></option>
+                    <option value="3" localize="label" label="@comments_markedAsSpam"></option>
+                    <option value="4" localize="label" label="@comments_trashed"></option>
+                </select>
+
+            </umb-editor-sub-header-section>
+
+        </umb-editor-sub-header-content-right>
+
+    </umb-editor-sub-header>
+
+    <div class="umb-table" ng-if="vm.comments.length > 0 && vm.dashboard.loading === false" ng-class="{'umb-table-inactive': vm.dashboard.urlTrackerDisabled === true}">
+
+        <div class="umb-table-head">
+            <div class="umb-table-row">
+                <div class="umb-table-cell">
+                    <input class="umb-table__input ng-scope" type="checkbox" 
+                           ng-if="vm.allowSelectAll" 
+                           ng-click="vm.selectAll($event)" 
+                           ng-checked="vm.isSelectedAll()">
+                </div>
+                <div class="umb-table-cell"><localize key="comments_author">Author</localize></div>
+                <div class="umb-table-cell comment-cell__comment"><localize key="comments_comment">Comment</localize></div>
+                <div class="umb-table-cell"><localize key="comments_responseTo">Response to</localize></div>
+            </div>
+        </div>
+
+        <div class="umb-table-body">
+
+            <div class="umb-table-row" ng-repeat="item in vm.comments"
+                 ng-class="{
+                    '-selected':item.selected,
+                    '-approved':item.isApproved,
+                    '-unapproved color-black':!item.isApproved,
+                    '-spam':item.isSpam,
+                    '-trashed':item.isTrashed
+                }">
+
+                <div class="umb-table-cell" ng-click="vm.selectItem(item, $index, $event)">
+                    <i class="umb-table-body__icon umb-table-body__fileicon" ng-class="vm.getIcon(item)" title="Select"></i>
+                    <i class="umb-table-body__icon umb-table-body__checkicon icon-check" title="Deselect"></i>
+                </div>
+
+                <div class="umb-table-cell" ng-click="vm.clickItem(item, $event)">
+                    <div class="umb-table__name umb-table-body__link" title="{{item.author}}">
+                        <span ng-bind="item.author"></span>
+                    </div>
+                    <small class="comment__email" title="{{item.email}}" ng-bind="item.email"></small>
+                    <small class="comment__ipaddress" title="{{item.ipAddress}}" ng-bind="item.ipAddress"></small>
+                </div>
+
+                <div class="umb-table-cell comment-cell__comment">
+                    <small class="comment-date" ng-bind="item.createDate | date:'short'"></small>
+                    <div class="comment-body-text" ng-bind="item.bodyText"></div>
+                </div>
+
+                <div class="umb-table-cell">
+                    <div ng-bind="item.content.name"></div>
+                    <div class="umb-table-body__link" ng-click="vm.replyTo(item)">
+                        <localize key="comments_replyTo">Reply to</localize>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <umb-empty-state ng-if="vm.comments.length === 0 && vm.dashboard.searchTerm.length === 0 && !vm.dashboard.loading"
+                     position="center">
+        <div><localize key="comments_noComments">No redirects have been made</localize></div>
+        <small class="faded"><localize key="comments_noCommentsDescription">When a published page gets renamed or moved a redirect will automatically be made to the new page</localize></small>
+    </umb-empty-state>
+
+    <umb-empty-state ng-if="vm.comments.length === 0 && vm.dashboard.searchTerm.length > 0 && !vm.dashboard.loading"
+                     position="center">
+        <localize key="general_searchNoResult"></localize>
+    </umb-empty-state>
+
+    <div class="flex justify-center items-center">
+        <umb-pagination ng-if="vm.pagination.totalPages > 1 && !vm.dashboard.loading"
+                        page-number="vm.pagination.pageNumber"
+                        total-pages="vm.pagination.totalPages"
+                        on-next="vm.goToPage"
+                        on-prev="vm.goToPage"
+                        on-go-to-page="vm.goToPage">
+        </umb-pagination>
+    </div>
+
+    <umb-overlay ng-if="vm.overlay.show"
+                 model="vm.overlay"
+                 view="vm.overlay.view"
+                 position="right">
+    </umb-overlay>
+</div>

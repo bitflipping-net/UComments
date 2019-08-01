@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <creator>
+    <name>The Umbraco community</name>
+    <link>http://our.umbraco.org/documentation/Extending-Umbraco/Language-Files</link>
+  </creator>
+  <area alias="comments">
+    <key alias="comment">Comment</key>
+    <key alias="author">Author</key>
+    <key alias="replyTo">Reply</key>
+    <key alias="bodyText">Comment</key>
+    <key alias="email">Email</key>
+    <key alias="ipAddress">IP Address</key>
+    <key alias="websiteUrl">Website Url</key>
+    <key alias="createDate">Date</key>
+    <key alias="responseTo">Response to</key>
+
+    <key alias="any">Any</key>
+    <key alias="approved">Approved</key>
+    <key alias="pending">Pending</key>
+    <key alias="markedAsSpam">Marked as Spam</key>
+    <key alias="trashed">Trashed</key>
+
+    <key alias="approve">Approve</key>
+    <key alias="unapprove">Unapprove</key>
+    <key alias="markAsSpam">Mark as Spam</key>
+    <key alias="moveToTrash">Move to Trash</key>
+    
+    <key alias="noCommentsDescription">Try changing the filters</key>
+    <key alias="noComments">No comments</key>
+  </area>
+</language>

@@ -1,0 +1,6 @@
+﻿@inherits UmbracoViewPage<UmbracoComments.Core.Models.CommentReplyMailModel>
+@using UmbracoComments.Core.Models;
+
+<p>Hej @Model.ReplyTo.Author,</p>
+<p>@Model.Reply.Author skrev en kommentar.</p>
+@Html.Partial("~/Views/MailMessages/Partials/Email/_Button.cshtml", new MailButton() { Url = Model.Reply.Url, Label="Skriv kommentar" })

@@ -1,0 +1,6 @@
+{
+  "javascript": [
+    "~/App_plugins/uComments/Backoffice/js/comments.service.js",
+    "~/App_Plugins/uComments/Backoffice/js/comments.controller.js"
+  ]
+}

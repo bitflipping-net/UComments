@@ -1,0 +1,10 @@
+﻿@using Lecoati.LeBlender.Extension.Models​
+@inherits UmbracoViewPage<LeBlenderModel>
+@foreach(var item in Model.Items)
+{
+    string cite = item.GetValue<string>("cite");
+    <blockqoute class="blockquote" @Umbraco.If(!string.IsNullOrWhiteSpace(cite), string.Format("cite=\"{0}\"", cite))>
+        <p class="mb-0">@item.GetValue("text")</p>
+        <footer class="blockquote-footer">@item.GetValue("footerText") <cite title="@item.GetValue("sourceTitle")">@item.GetValue("sourceTitle")</cite></footer>
+    </blockqoute>
+}
